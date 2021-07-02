@@ -45,9 +45,13 @@ router.get('/getAllUsers', function (req, res) {
 router.get('/getuser/:id', function (req, res) {
   try {
     User.findAll({ where: { id: req.params.id } })
-        .then(user => res.send(
-            new Response(user.id?'success':'failed', user.id?'user found':'user not found', user))
-            ).catch(err => {
+        .then(user => {
+          let found = true;
+          if(user.id === undefined || user.id === null){
+            found = false;
+          }
+          res.send(new Response(found?'success':'failed', found?'user found':'user not found', user))
+        }).catch(err => {
                 console.log(err);
                 res.send(new Response('success', 'error', []));
             });

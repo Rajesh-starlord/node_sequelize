@@ -42,9 +42,13 @@ router.get('/getAllProjectAssigns', function (req, res) {
 router.get('/getprojectAssign/:id', function (req, res) {
   try {
     ProjectAssign.findAll({ where: { userId: req.params.id } })
-        .then(projectAssign => res.send(
-            new Response(projectAssign.id?'success':'failed', projectAssign.id?'projectAssign found':'projectAssign not found', projectAssign))
-            ).catch(err => {
+        .then(projectAssign => {
+          let found = true;
+          if(projectAssign.id === undefined || projectAssign.id === null){
+            found = false;
+          }
+          res.send(new Response(found?'success':'failed', found?'projectAssign found':'projectAssign not found', projectAssign))
+        }).catch(err => {
                 console.log(err);
                 res.send(new Response('success', 'error', []));
             });

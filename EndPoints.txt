@@ -1,0 +1,52 @@
+/login   [post] { userid:'Admin', passsword:'Starlord' }
+
+After login you wiil get apikey.
+
+use the apikey and send in the header as x-access-token to test below end points. 
+
+---------------
+#END POINTS::::
+---------------
+
+
+/departments/addDepartment  [post] {"deptname":"demo dept1"}
+
+/departments/getAllDepartments
+
+/departments/getdepartment/:id
+
+/departments/updatedepartment/:id  [post]
+
+/departments/deletedepartment/:id  [post]
+
+
+/projects/addProject  [post] {"projectname":"demo project1"}
+
+/projects/getAllProjects
+
+/projects/getproject/:id
+
+/projects/updateproject/:id  [post]
+
+/projects/deleteproject/:id  [post]
+
+
+/users/addUser  [post] {"name":"demo user","dept":1}
+
+/users/getAllUsers
+
+/users/getuser/:id
+
+/users/updateuser/:id  [post]
+
+/users/deleteuser/:id  [post]
+
+
+/projectAssign/assignProject  [post] {"userId":"1","projectId":1}
+
+/projectAssign/getAllProjectAssigns
+
+/projectAssign/getprojectAssign/:id
+
+/projectAssign/deleteprojectAssign/:id  [post]
+
