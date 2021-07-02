@@ -41,10 +41,30 @@ router.get('/getAllProjectAssigns', function (req, res) {
 /* GET projectAssign by id. */
 router.get('/getprojectAssign/:id', function (req, res) {
   try {
-    ProjectAssign.findAll({ where: { userId: req.params.id } })
+    ProjectAssign.findAll({ where: { id: req.params.id } })
         .then(projectAssign => {
           let found = true;
-          if(projectAssign.id === undefined || projectAssign.id === null){
+          if (!projectAssign.length > 0) {
+            found = false;
+          }
+          res.send(new Response(found?'success':'failed', found?'projectAssign found':'projectAssign not found', projectAssign))
+        }).catch(err => {
+                console.log(err);
+                res.send(new Response('success', 'error', []));
+            });
+  } catch (e) {
+    console.log(e);
+    res.send(new Response('filed', 'error', []));
+  }
+});
+
+/* GET projectAssign by userid. */
+router.get('/getprojectAssignByUser/:userid', function (req, res) {
+  try {
+    ProjectAssign.findAll({ where: { userId: req.params.userid } })
+        .then(projectAssign => {
+          let found = true;
+          if (!projectAssign.length > 0) {
             found = false;
           }
           res.send(new Response(found?'success':'failed', found?'projectAssign found':'projectAssign not found', projectAssign))

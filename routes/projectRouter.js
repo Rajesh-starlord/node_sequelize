@@ -46,8 +46,8 @@ router.get('/getproject/:id', function (req, res) {
         Project.findAll({ where: { id: req.params.id } })
         .then(project =>{
             let found = true;
-            if(project.id === undefined || project.id === null){
-              found = false;
+            if (!project.length > 0) {
+                found = false;
             }
             res.send(new Response(found?'success':'failed', found?'project found':'project not found', project))
           }).catch(err => {

@@ -47,7 +47,7 @@ router.get('/getuser/:id', function (req, res) {
     User.findAll({ where: { id: req.params.id } })
         .then(user => {
           let found = true;
-          if(user.id === undefined || user.id === null){
+          if (!user.length > 0) {
             found = false;
           }
           res.send(new Response(found?'success':'failed', found?'user found':'user not found', user))

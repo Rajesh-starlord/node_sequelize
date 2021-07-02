@@ -44,8 +44,8 @@ router.get('/getdepartment/:id', function (req, res) {
         Department.findAll({ where: { id: req.params.id } })
         .then(department =>{
             let found = true;
-            if(department.id === undefined || department.id === null){
-              found = false;
+            if (!department.length > 0) {
+                found = false;
             }
             res.send(new Response(found?'success':'failed', found?'department found':'department not found', department))
           }).catch(err => {
