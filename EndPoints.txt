@@ -48,5 +48,7 @@ use the apikey and send in the header as x-access-token to test below end points
 
 /projectAssign/getprojectAssign/:id
 
+/projectAssign/getprojectAssignByUser/:userid
+
 /projectAssign/deleteprojectAssign/:id  [post]
 
